@@ -84,11 +84,11 @@ async function uploadBookmarks() {
         await BookmarkService.update(JSON.stringify({
             files: {
                 [setting.gistFileName]: {
-                    content: JSON.stringify(syncdata)
+                    content: JSON.stringify(syncdata, null, 2)
                 }
             },
             description: setting.gistFileName
-        }));
+        }, null, 2));
         const count = getBookmarkCount(syncdata.bookmarks);
         await browser.storage.local.set({ remoteCount: count });
         if (setting.enableNotify) {
